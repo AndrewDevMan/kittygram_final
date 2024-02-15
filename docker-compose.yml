@@ -3,15 +3,20 @@ version: '3'
 volumes:
   pg_data:
   static:
+  media:
 
 services:
   db:
-    image: postgres:13
+    image: postgres:13.10
+    env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
     build: ./backend/
     env_file: .env
+    volumes:
+      - static:/backend_static/
+      - media:/media/
   frontend:
     env_file: .env
     build: ./frontend/
@@ -25,3 +30,4 @@ services:
       - 9000:80
     volumes:
       - static:/static
+      - media:/media
