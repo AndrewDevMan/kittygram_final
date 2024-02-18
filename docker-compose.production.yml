@@ -9,11 +9,13 @@ services:
   db:
     image: postgres:13.10
     env_file: .env
+    restart: on-failure
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
     image: andrewdevman/kittygram_backend
     env_file: .env
+    restart: on-failure
     volumes:
       - static:/backend_static/
       - media:/media/
@@ -21,13 +23,15 @@ services:
     env_file: .env
     image: andrewdevman/kittygram_frontend
     command: cp -r /app/build/. /static/
+    restart: on-failure
     volumes:
       - static:/static
   gateway:
     image: andrewdevman/kittygram_gateway
     env_file: .env
+    restart: on-failure
     ports:
-      - 9000:80
+      - ${NGINX_PORT}:${NGINX_LISTEN_PORT}
     volumes:
       - static:/static
       - media:/media
