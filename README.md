@@ -39,5 +39,5 @@
 
 ## Об авторе
 
-Андрей Тетнёв - ученик Яндекс.Практикума
+Андрей Тетнёв
 [GitHub](https://github.com/AndrewDevMan/) | [E-mail](mailto:andreytetnev@yandex.ru)
